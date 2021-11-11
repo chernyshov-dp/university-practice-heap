@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://MyNames.com" targetNamespace="http://MyNames.com" xml:lang="ru">
+  <xs:simpleType name="Тип_ИНН">
+    <xs:restriction base="xs:string">
+      <xs:length fixed="true" value="12"/>
+      <xs:pattern value="[\d+]{10,12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Тип_ФИО">
+    <xs:annotation>
+      <xs:documentation>Строка не более 50 любых символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Тип_Должность">
+    <xs:annotation>
+      <xs:documentation>Строка не более 30 любых символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="30"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Тип_Организация">
+    <xs:annotation>
+      <xs:documentation>Строка не более 100 любых символов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Тип_Выручка">
+    <xs:annotation>
+      <xs:documentation>Простой тип для выручки</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Тип_СебестоимостьПродаж">
+    <xs:annotation>
+      <xs:documentation>Простой тип для себестоимости продаж</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Тип_ВаловаяПрибыль">
+    <xs:annotation>
+      <xs:documentation>Простой тип для валовой прибыли</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Тип_УправленческиеРасходы">
+    <xs:annotation>
+      <xs:documentation>Простой тип для управленческих расходов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Тип_ПрочиеРасходы">
+    <xs:annotation>
+      <xs:documentation>Простой тип для прочих расходов</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="УправленческаяОтчетность">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Адресат">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ФИО" type="Тип_ФИО" />
+              <xs:element name="ИНН" type="Тип_ИНН" />
+              <xs:element name="Телефон">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="Тип" type="xs:string" use="required" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Должность" type="Тип_Должность" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ВидОтчетности">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ОтчетОФинРезультатах">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Организация" type="Тип_Организация" />
+                    <xs:element name="ИНН" type="Тип_ИНН" />
+                    <xs:element name="Показатель">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Выручка" type="Тип_Выручка" />
+                          <xs:element name="СебестоимостьПродаж" type="Тип_СебестоимостьПродаж" />
+                          <xs:element name="ВаловаяПрибыль" type="Тип_ВаловаяПрибыль" />
+                          <xs:element name="УправленческиеРасходы" type="Тип_УправленческиеРасходы" />
+                          <xs:element name="ПрочиеРасходы" type="Тип_ПрочиеРасходы" />
+                        </xs:sequence>
+                        <xs:attribute name="ЕдиницаИзмерения" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ОтчетОДвиженииДенежныхСредств">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Организация" type="Тип_Организация" />
+                    <xs:element name="ИНН" type="Тип_ИНН" />
+                    <xs:element name="Показатель">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ДенежныеПотокиОтТекущихОпераций">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="АрендныйПлатеж" type="xs:unsignedByte" />
+                                <xs:element name="ПерепродажаФинВложений" type="xs:unsignedByte" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ДенежныеПотокиОтИнвестиционныхОпераций">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ПродажаВнеоборотныхАктивов" type="xs:unsignedByte" />
+                                <xs:element name="ПродажаАкцийДругихОрганизаций" type="xs:unsignedByte" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="ЕдиницаИзмерения" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
