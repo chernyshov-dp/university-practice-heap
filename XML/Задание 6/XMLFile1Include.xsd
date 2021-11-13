@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://MyNames.com"
+targetNamespace="http://MyNames.com" xml:lang="ru">
+  <xs:include schemaLocation="TelephoneType.xsd"/>
+  <xs:include schemaLocation="ContactType.xsd"/>
+  <xs:include schemaLocation="ITNType.xsd"/>
+  <xs:include schemaLocation="String20Type.xsd"/>
+  <xs:group name="Показатели">
+    <xs:annotation>
+      <xs:documentation>
+        Группа элементов для описания экономических показателей
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Выручка" type="Строка20" />
+      <xs:element name="СебестоимостьПродаж" type="Строка20" />
+      <xs:element name="ВаловаяПрибыль" type="Строка20" />
+      <xs:element name="УправленческиеРасходы" type="Строка20" />
+      <xs:element name="ПрочиеРасходы" type="Строка20" />
+    </xs:sequence>
+  </xs:group>
+  <xs:element name="УправленческаяОтчетность">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Адресат">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="РуководительОрганизации" type="КонтактноеЛицо"/>
+              <xs:element name="ВладелецОрганизации" type="КонтактноеЛицо"/>
+              <xs:element name="ТопМенеджер" type="КонтактноеЛицо"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ВидОтчетности">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ОтчетОФинРезультатах">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Организация" type="Строка50" />
+                    <xs:element name="ИНН" type="Тип_ИНН" />
+                    <xs:element name="ЕдиницаИзмерения" type="Строка20" />
+                    <xs:element name="Показатель">
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:group ref="Показатели"/>
+              <xs:element name="ОтчетОДвиженииДенежныхСредств">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Организация" type="Строка50" />
+                    <xs:element name="ИНН" type="Тип_ИНН" />
+                    <xs:element name="ЕдиницаИзмерения" type="Строка50" />
+                    <xs:element name="Показатель">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="ДенежныеПотокиОтТекущихОпераций">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="АрендныйПлатеж" type="Строка20" />
+                                <xs:element name="ПерепродажаФинВложений" type="Строка20" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="ДенежныеПотокиОтИнвестиционныхОпераций">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="ПродажаВнеоборотныхАктивов" type="Строка20" />
+                                <xs:element name="ПродажаАкцийДругихОрганизаций" type="Строка20" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://MyNames.com"
+    elementFormDefault="qualified"
+    xmlns="http://MyNames.com"
+    xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xml:lang="ru"
+>
+  <xs:simpleType name="Тип_ИНН">
+    <xs:annotation>
+      <xs:documentation>Простой тип для ИНН</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length fixed="true" value="10"/>
+      <xs:pattern value="\d{10}"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

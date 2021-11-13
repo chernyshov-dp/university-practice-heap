@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://String50.com"
+    elementFormDefault="qualified"
+    xmlns="http://String50.com"
+    xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xml:lang="ru"
+>
+  <xs:simpleType name="Строка50">
+    <xs:annotation>
+      <xs:documentation>
+        Строка не более 50 любых символов
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

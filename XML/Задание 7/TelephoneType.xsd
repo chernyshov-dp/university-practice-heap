@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://Telephone.com"
+    elementFormDefault="qualified"
+    xmlns="http://Telephone.com"
+    xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xml:lang="ru"
+>
+  <xs:simpleType name="Тип_Телефон">
+    <xs:annotation>
+      <xs:documentation>Простой тип для номера телефона</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(\+7|8)[\s(]*\d{3}[)\s]*\d{3}[\s-]?\d{2}[\s-]?\d{2}"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

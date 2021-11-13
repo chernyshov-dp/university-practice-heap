@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://MyNames.com"
+    elementFormDefault="qualified"
+    xmlns="http://MyNames.com"
+    xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xml:lang="ru"
+>
+  <xs:include schemaLocation="TelephoneType.xsd"/>
+  <xs:simpleType name="Строка50">
+    <xs:annotation>
+      <xs:documentation>
+        Строка не более 50 любых символов
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="КонтактноеЛицо">
+    <xs:annotation>
+      <xs:documentation>
+        Сложный тип для описания контактного лица
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ФИО" type="Строка50" />
+      <xs:element name="Телефон" type="Тип_Телефон" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

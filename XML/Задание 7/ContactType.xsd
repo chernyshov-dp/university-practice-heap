@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://Contact.com"
+    elementFormDefault="qualified"
+    xmlns="http://Contact.com"
+    xmlns:te="http://Telephone.com"
+    xmlns:s50="http://String50.com"
+    xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xml:lang="ru"
+>
+  <xs:import schemaLocation="String50Type.xsd" namespace="http://String50.com"/>
+  <xs:import schemaLocation="TelephoneType.xsd" namespace="http://Telephone.com"/>
+  <xs:complexType name="КонтактноеЛицо">
+    <xs:annotation>
+      <xs:documentation>
+        Сложный тип для описания контактного лица
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ФИО" type="s50:Строка50" />
+      <xs:element name="Телефон" type="te:Тип_Телефон" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
